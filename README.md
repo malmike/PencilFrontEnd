@@ -1,6 +1,10 @@
-# SampleApp
+# PENCIL FRONT END
+[![Test](https://github.com/malmike/PencilFrontEnd/workflows/Angular%20CI/badge.svg)](https://github.com/malmike/PencilFrontEnd/workflows/Angular%20CI/badge.svg)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.2.
+
+## Deployment to firebase
+https://pencilproject-cda84.web.app/
 
 ## Development server
 
@@ -22,6 +26,3 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

@@ -32,7 +32,7 @@ jobs:
         run: |
           npm install -g yarn
           yarn install
-      - run: yarn install --frozen-lockfile && yarn build
+      - run: yarn install --frozen-lockfile && yarn build --prod
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
