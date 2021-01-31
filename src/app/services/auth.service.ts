@@ -21,12 +21,22 @@ export class AuthService {
     return this._authLogin(this.createGoogleAuthProvider());
   }
 
+  signOut() {
+    this.angularFireAuth.signOut().then(
+      () => {
+        this.router.navigate(['login']);
+      }
+    ).catch((error) => {
+      console.error(error);
+    })
+  }
+
   private _authLogin(provider: firebase.auth.AuthProvider) {
     return this.angularFireAuth.signInWithPopup(provider)
       .then(() => {
         this.router.navigate(['text-editor']);
       }).catch((error) => {
-        console.log(error)
+        console.error(error)
       });
   }
 }
