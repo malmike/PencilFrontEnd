@@ -2,8 +2,9 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on workflow dispatch (Manually)
-on:
-  workflow_dispatch: pull_request
+on: |
+  workflow_dispatch
+  pull_request
 jobs:
   build_and_preview:
     runs-on: ubuntu-latest
