@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ export class AppComponent implements OnInit, OnDestroy{
   subscription: Subscription = new Subscription();
 
   constructor(
-    private angularFireAuth: AngularFireAuth
+    private angularFireAuth: AngularFireAuth,
+    private authService: AuthService,
   ) { }
 
   async ngOnInit() {
@@ -26,6 +28,6 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   signOut() {
-    console.log('This is meant to sign out');
+    this.authService.signOut();
   }
 }

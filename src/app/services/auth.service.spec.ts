@@ -7,7 +7,6 @@ import firebase from "firebase/app";
 import { AuthService } from './auth.service';
 import MockAngularFireAuth from '../tests/mocks/angularFireAuth.mock';
 
-
 describe('AuthService', () => {
   let authService: AuthService;
   let angularFireAuth: AngularFireAuth;

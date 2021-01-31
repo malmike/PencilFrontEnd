@@ -1,4 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Subscription } from 'rxjs';
+import { FirebaseService } from '../services/firebase.service';
+import { TextDocService } from '../services/text-doc.service';
 
 declare const MediumEditor: any;
 
@@ -34,21 +38,37 @@ const editorConfig = {
   styleUrls: ['./text-editor.component.scss']
 })
 
-export class TextEditorComponent implements OnInit, AfterViewInit{
+export class TextEditorComponent implements OnInit, AfterViewInit, OnDestroy{
 
   editor: any;
   @ViewChild('editable', { static: true }) editable?: ElementRef<HTMLElement>;
+  @ViewChild('result', { static: true }) result?: ElementRef<HTMLElement>;
   initialValues: string = '';
+  subscription: Subscription = new Subscription();
+  docId: string = '';
+  loading = false;
 
-  constructor() {
+  constructor(
+    private textDocService: TextDocService,
+    private angularFirestore: AngularFirestore,
+  ) {}
 
+  ngOnInit(): void {
+    this.loading = true;
+    this.subscription = this.textDocService.getLatestTextDoc().subscribe(textDoc => {
+      if (this.result)
+        this.result.nativeElement.innerHTML = textDoc.textDoc;
+      this.writeValueToEditor(textDoc.textDoc);
+      this.docId = textDoc.docId ? textDoc.docId : this.angularFirestore.createId();
+    });
   }
 
-  ngOnInit(): void {}
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
+  }
 
   ngAfterViewInit(): void {
     this.initialiseMediumEditor();
-    this.writeValueToEditor(this.initialValues);
     this.mediumEditorChanged();
   }
 
@@ -61,15 +81,16 @@ export class TextEditorComponent implements OnInit, AfterViewInit{
     if (this.editor)
       this.editor.subscribe('editableInput',  (event: any, editable: any)=> {
         let value = this.editor.elements[0].innerHTML;
-        console.log(value);
+        this.textDocService.addTextDoc(value, this.docId);
       });
   }
 
   writeValueToEditor(value: string) {
-    if (this.editable) {
+    if (this.editable && this.loading) {
+      this.loading = false;
       if (value && value != "") {
         this.editor.elements[0].value = value;
-        this.editor.elements[0].innerHTML = (value);
+        this.editor.elements[0].innerHTML = value;
         this.editor.elements[0].setAttribute("data-placeholder", "");
       } else {
         this.editor.elements[0].value = null;
