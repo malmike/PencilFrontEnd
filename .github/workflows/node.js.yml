@@ -24,7 +24,7 @@ jobs:
     - name: Cache node modules
       uses: actions/cache@v2
       with:
-        path: ~/.npm
+        path: /home/runner/.cache/yarn/v6
         key: ${{ runner.os }}-node-${{ hashFiles('**/yarn-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-           
@@ -36,6 +36,5 @@ jobs:
       run: |
         npm install -g yarn
         yarn install
-        yarn cache dir      
     - name: Run tests
       run: yarn test-headless
