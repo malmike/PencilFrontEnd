@@ -16,9 +16,7 @@ export class AppComponent implements OnInit, OnDestroy{
   ) { }
 
   async ngOnInit() {
-    this.subscription = this.angularFireAuth.authState.subscribe((user) => {
-      console.log(`User`)
-      console.log(user);
+    this.subscription = this.angularFireAuth.user.subscribe((user) => {
       this.loggedIn = !!user;
     })
   }
