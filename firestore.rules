@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+	match /databases/{database}/documents {
+    // User data should be read and written only by the user who created it
+    match /users/{userUid} {
+      allow read, write: if request.auth.uid == userUid;
+
+      match /{document=**} {
+        allow read, write: if request.auth.uid == userUid;
+      }
+    }
+  }
+}
