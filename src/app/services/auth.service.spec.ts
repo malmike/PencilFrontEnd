@@ -1,16 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ReplaySubject } from "rxjs";
-import firebase from "firebase/app";
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import firebase from "firebase/app";
 
-class MockAngularFireAuth {
-  user = new ReplaySubject<firebase.User>(1);
-  signInWithPopup = () => Promise.resolve();
-  auth = {};
-}
+import { AuthService } from './auth.service';
+import MockAngularFireAuth from '../tests/mocks/angularFireAuth.mock';
+
 
 describe('AuthService', () => {
   let authService: AuthService;
