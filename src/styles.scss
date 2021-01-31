@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+/* Import styles for medium editor*/
+@import '~medium-editor/dist/css/medium-editor.min.css';
+@import '~medium-editor/dist/css/themes/default.min.css';
+
+/* Global sytles*/
 h1,
 h2,
 h3,
@@ -32,7 +37,6 @@ p {
   border: 1px solid #eee;
   background-color: #fafafa;
   height: 40px;
-  width: 200px;
   margin: 0 8px 16px;
   padding: 16px;
   display: flex;
