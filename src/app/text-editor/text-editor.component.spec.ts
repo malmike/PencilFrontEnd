@@ -1,10 +1,9 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AngularFireAuth } from '@angular/fire/auth';
 
 import { TextEditorComponent } from './text-editor.component';
 
-describe('LoginComponent', () => {
+describe('TextEditorComponent', () => {
   let component: TextEditorComponent;
   let fixture: ComponentFixture<TextEditorComponent>;
 
