@@ -18,6 +18,9 @@ describe('TextEditorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TextEditorComponent);
     component = fixture.componentInstance;
+    spyOn(component, 'initialiseMediumEditor');
+    spyOn(component, 'writeValueToEditor');
+    spyOn(component, 'mediumEditorChanged');
     fixture.detectChanges();
   })
 
