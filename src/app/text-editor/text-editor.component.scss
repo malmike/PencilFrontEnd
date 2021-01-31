@@ -1,13 +1,35 @@
 :host{
   width: 100%;
 }
+
+.card-container {
+  flex-direction: row;
+  width: 100%;
+}
+
 .card {
   height: 75vh;
   align-items: flex-start;
+  width: 40%;
+}
+
+.text-doc {
   width: 95%;
+  height: 100%;
 }
 
 .text-editor {
-  width: 95%;
-  height: 100%;
+  border: 1px dotted rgb(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 779px) {
+  .card-container {
+    flex-direction: column;
+  }
+
+  .card {
+    height: 45vh;
+    align-items: flex-start;
+    width: 96%;
+  }
 }
